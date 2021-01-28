@@ -72,7 +72,7 @@
 
 						<!-- //나이 -->
 						<div class="form-group">
-							<span class="form-text">성별</span> //남자면
+							<span class="form-text">성별</span>
 							<c:choose>
 								<c:when test="${userVo.gender eq male}">
 									<label for="rdo-male">남</label>
@@ -84,7 +84,6 @@
 										value="female">
 								</c:when>
 								<c:otherwise>
-									//여자면
 									<label for="rdo-male">남</label>
 									<input type="radio" id="rdo-male" name="gender" value="male">
 

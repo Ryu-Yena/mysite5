@@ -14,7 +14,7 @@ public class UserDao {
 
 	//회원가입 --> 회원정보저장
 	public int insert(UserVo userVo) {
-		System.out.println("회원가입");
+		System.out.println("user dao insert");
 		System.out.println(userVo.toString());
 
 		return sqlSession.insert("user.insert", userVo);
@@ -22,24 +22,26 @@ public class UserDao {
 
 	//로그인 --> 회원정보 가져오기
 	public UserVo selectUser(UserVo userVo) {
-		System.out.println("로그인");
+		System.out.println("user dao selectUser");
 		System.out.println(userVo.toString());
 		
 		return sqlSession.selectOne("user.selectUser", userVo);
 	}
 
-	//회원정보 가져오기
+	//회원정보 수정폼 --> 회원정보 가져오기
 	public UserVo selectOne(int no) {
-		System.out.println("회원 1명 정보가져오기");
+		System.out.println("user dao selectUesr no");
+		System.out.println(no);
 	
-		return sqlSession.selectOne("user.selectOne", no);
+		return sqlSession.selectOne("user.selectUserbyNo", no);
 	}
-
-	public void update(UserVo userVo) {
+	
+	//회원정보 수정
+	public int update(UserVo userVo) {
 		System.out.println("회원정보 수정");
 		System.out.println(userVo.toString());
 		
-		sqlSession.update("user.update", userVo);
+		return sqlSession.update("user.update", userVo);
 	}
 
 }

@@ -37,7 +37,6 @@ public class UserVo {
 	}
 
 
-
 	public UserVo(int no, String id, String password, String name, String gender) {
 		super();
 		this.no = no;

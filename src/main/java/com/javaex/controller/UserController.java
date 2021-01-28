@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javaex.dao.UserDao;
+import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
 
 @Controller
@@ -21,6 +22,8 @@ public class UserController {
 	@Autowired
 	private UserDao userDao;
 	
+	@Autowired
+	private UserService userService;
 	//생성자(디폴트 생성자라 생략되어있음)
 	//g/s 생략
 	
@@ -40,8 +43,7 @@ public class UserController {
 		System.out.println("/user/join");
 		System.out.println(userVo.toString());
 		
-		int count = userDao.insert(userVo);
-		System.out.println("userController count:" + count);
+		int count = userService.join(userVo);
 		
 		return "user/joinOk";
 	}
@@ -60,18 +62,13 @@ public class UserController {
 		System.out.println("/user/login");
 		System.out.println(userVo.toString());
 		
-		UserVo authUser = userDao.selectUser(userVo);
-		
-		if(authUser == null) {
-			System.out.println("로그인 실패");
-			
-			return "redirect:/user/loginForm?result=fail";
-		} else {
-			System.out.println("로그인 성공");
-			
+		UserVo authUser = userService.login(userVo);
+
+		if (authUser != null) { // 성공
 			session.setAttribute("authUser", authUser);
-			
 			return "redirect:/";
+		} else {//실패
+			return "redirect:/user/loginForm?result=fail";
 		}
 	}
 	
@@ -83,7 +80,6 @@ public class UserController {
 		
 		session.removeAttribute("authUser");
 		session.invalidate();
-		
 		return "redirect:/";
 	}
 	
@@ -92,17 +88,15 @@ public class UserController {
 	public String modifyForm(HttpSession session, Model model) {
 		System.out.println("/user/modifyForm");
 		
-
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		//세션에서 no값 가져오기
+		int no = ((UserVo)session.getAttribute("authUser")).getNo();
 		
-		//로그인 안한 상태면 가져올 수 없다
-		int no = authUser.getNo();
+		//세션값이 없으면 --> 로그인 폼으로
 		
 		//회원정보 가져오기
-		UserVo userVo = userDao.selectOne(no);
-		System.out.println("getUser(no)-->" + userVo);
+		UserVo userVo = userService.modifyForm(no);
 		
-		//어트리뷰트에 담기
+		//jsp에 데이터 보내기
 		model.addAttribute("userVo", userVo);
 		
 		return "/user/modifyForm";
@@ -112,8 +106,23 @@ public class UserController {
 	@RequestMapping(value="/modify", method={RequestMethod.GET, RequestMethod.POST})
 	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("/user/modify");
-		//수정 예정
 		
-		return "";
+		//세션에서 정보가져오기
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
+		//세션에서 no값 가져오기
+		int no = authUser.getNo();
+		
+		//vo에 no 추가
+		userVo.setNo(no);
+		
+		//회원정보 수정
+		userService.modify(userVo);
+		
+		//session 정보도 없데이트
+		//session의 name 값만 변경하면 된다.
+		authUser.setName(userVo.getName()); //체크하기
+		
+		return "redirect:/";
 	}
 }

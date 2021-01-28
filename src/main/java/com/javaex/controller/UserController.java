@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.javaex.dao.UserDao;
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
 
@@ -18,9 +17,7 @@ import com.javaex.vo.UserVo;
 public class UserController {
 	
 	//필드
-	
-	@Autowired
-	private UserDao userDao;
+
 	
 	@Autowired
 	private UserService userService;

@@ -43,7 +43,7 @@
             <!-- //content-head -->
 
 			<div id="guestbook">
-				<form action="/mysite2/gbc" method="get">
+				<form action="${pageContext.request.contextPath}/guestbook/add" method="get">
 					<table id="guestAdd">
 						<colgroup>
 							<col style="width: 70px;">
@@ -56,7 +56,7 @@
 								<th><label class="form-text" for="input-uname">이름</label></td>
 								<td><input id="input-uname" type="text" name="name"></td>
 								<th><label class="form-text" for="input-pass">패스워드</label></td>
-								<td><input id="input-pass"type="password" name="pass"></td>
+								<td><input id="input-pass"type="password" name="password"></td>
 							</tr>
 							<tr>
 								<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
@@ -68,12 +68,11 @@
 						
 					</table>
 					<!-- //guestWrite -->
-					<input type="hidden" name="action" value="add">
 					
 				</form>	
 				
 				<!-- //guestRead -->
-				<c:forEach items="${guestList}" var="guestList">
+				<c:forEach items="${guestList}" var="vo">
 					<table class="guestRead">
 						<colgroup>
 								<col style="width: 10%;">
@@ -82,13 +81,13 @@
 								<col style="width: 10%;">
 						</colgroup>
 						<tr>
-							<td>${guestList.no}</td>
-							<td>${guestList.name}</td>
-							<td>${guestList.Reg_date}</td>
-							<td><a href="/mysite2/gbc?action=deleteForm&no=${guestList.no}">[삭제]</a></td>
+							<td>${vo.no}</td>
+							<td>${vo.name}</td>
+							<td>${vo.Reg_date}</td>
+							<td><a href="${pageContext.request.contextPath}/guestbook/deleteForm&no=${vo.no}">[삭제]</a></td>
 						</tr>
 						<tr>
-							<td colspan=4 class="text-left">${guestList.contnet}</td>
+							<td colspan=4 class="text-left">${vo.contnet}</td>
 						</tr>
 					</table>
 				</c:forEach>	

@@ -67,7 +67,7 @@
 	</select>
 	
 	<!-- 게시글 수정하기 -->
-	<update id="updateB" parameterType="int">
+	<update id="updateB" parameterType="BoardVo">
 		<![CDATA[
 			update board
 			set title = #{title}

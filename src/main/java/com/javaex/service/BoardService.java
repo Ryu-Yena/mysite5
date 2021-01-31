@@ -33,28 +33,28 @@ public class BoardService {
 	public void boardDelete(int no) {
 		System.out.println("BoardService boardDelete()");
 		
-		boardDao.boardDelete(no);
+		boardDao.deleteB(no);
 	}
 	
 	//조회수 업데이트
 	public void boardHit(int no) {
 		System.out.println("BaordService boardHit()");
 		
-		boardDao.boardHit(no);
+		boardDao.hitB(no);
 	}
 	
 	//게시글 읽기
 	public BoardVo boardRead(int no) {
 		System.out.println("BoardService boardRead()");
 		
-		return boardDao.boardSelectOne(no);
+		return boardDao.readB(no);
 	}
 	
 	//게시글 수정
-	public int boardUpdate(BoardVo boardVO) {
+	public int boardUpdate(BoardVo boardVo) {
 		System.out.println("BoardService boardUpdate()");
 		
-		return boardDao.boardUpdate(boardVO);
+		return boardDao.updateB(boardVo);
 	}
 
 }

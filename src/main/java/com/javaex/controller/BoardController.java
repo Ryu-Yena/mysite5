@@ -38,7 +38,7 @@ public class BoardController {
 	}
 	
 	//게시글 등록
-	@RequestMapping(value="write", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/write", method = {RequestMethod.GET, RequestMethod.POST})
 	public String insert(@ModelAttribute BoardVo boardVo) {
 		System.out.println("board/write");
 		
@@ -53,7 +53,7 @@ public class BoardController {
 		List<BoardVo> boardList = boardService.boardList();
 		// System.out.println(boardList.toString()); //잘가져오나
 		// boardList를 model에 담아줌.
-		model.addAttribute("bList", boardList);
+		model.addAttribute("boardList", boardList);
 
 		return "/board/list";
 	}

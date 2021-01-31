@@ -29,10 +29,10 @@ public class GuestService {
 	}
 	
 	//방명록 삭제
-		public int guestDelete(GuestVo guestVo) {
-			System.out.println("GuestService guestDelete()");
-			
-			return guestDao.deleteGuest(guestVo);
-		}
+	public int guestDelete(GuestVo guestVo) {
+		System.out.println("GuestService guestDelete()");
+
+		return guestDao.deleteGuest(guestVo);
+	}
 
 }

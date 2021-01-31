@@ -32,31 +32,32 @@ public class BoardDao {
 	}
 	
 	//게시글 삭제
-	public void boardDelete(int no) {
+	public void deleteB(int no) {
 		System.out.println("BoardDao boardDelete()");
 		sqlSession.delete("board.delete", no);
 	}
 	
 	//조회수
-	public void boardHit(int no) {
+	public void hitB(int no) {
 		System.out.println("BoardDao boardHit()");
 		
 		sqlSession.update("board.hit", no);
 	}
 
 	// 게시글 읽기
-	public BoardVo boardSelectOne(int no) {
+	public BoardVo readB(int no) {
 		System.out.println("BoardDao boardSelectOne()");
 
 		return sqlSession.selectOne("board.selectOne", no);
 	}
 	
 	//게시판 수정
-	public int boardUpdate(BoardVo boardVo) {
+	public int updateB(BoardVo boardVo) {
 		System.out.println("BoardDao boardUpdate()");
 		System.out.println(boardVo.toString());
 
-		return sqlSession.update("board.update", boardVo);
+		int count = sqlSession.update("board.update", boardVo);
+		return count;
 	}
 
 }

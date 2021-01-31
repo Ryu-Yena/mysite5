@@ -6,10 +6,12 @@
 	<typeAliases>
 			<typeAlias alias="UserVo" type="com.javaex.vo.UserVo" />
 			<typeAlias alias="GuestVo" type="com.javaex.vo.GuestVo" />
+			<typeAlias alias="BoardVo" type="com.javaex.vo.BoardVo" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mybatis/mappers/user.xml" />
 		<mapper resource="mybatis/mappers/guestbook.xml" />
+		<mapper resource="mybatis/mappers/board.xml" />
 	</mappers>
 </configuration>

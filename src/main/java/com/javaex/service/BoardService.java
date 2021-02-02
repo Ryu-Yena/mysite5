@@ -25,8 +25,9 @@ public class BoardService {
 	//게시판 리스트
 	public List<BoardVo> boardList(){
 		System.out.println("BaordService boardList()");
+		List<BoardVo> boardList = boardDao.getBoardList();
 		
-		return boardDao.getBoardList();
+		return boardList;
 	}
 	
 	//게시글 삭제

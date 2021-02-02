@@ -12,7 +12,7 @@
 
 </head>
 
-
+<!-- board list -->
 <body>
 	<div id="wrap">
 
@@ -22,8 +22,8 @@
 		<div id="aside">
 			<h2>게시판</h2>
 			<ul>
-				<li><a href="">일반게시판</a></li>
-				<li><a href="">댓글게시판</a></li>
+				<li><a href="${pageContext.request.contextPath}/board/list">일반게시판</a></li>
+				<li><a href="${pageContext.request.contextPath}/rboard/list">댓글게시판</a></li>
 			</ul>
 		</div>
 		<!-- //aside -->
@@ -104,8 +104,8 @@
 						<div class="clear"></div>
 					</div>
 					
-						<c:if test="${empty authUser}">
-							<a id="btn_write" href="/mysite2/board/writeForm">글쓰기</a>
+						<c:if test="${authUser != null}">
+							<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm">글쓰기</a>
 						</c:if>	
 				</div>
 				<!-- //list -->

@@ -19,16 +19,16 @@
 	</insert>
 	
 	<!--  게시글 리스트  -->
-	<select id="selectList" parameterType="UserVo" resultType="com.javaex.vo.BaordVo">
+	<select id="selectList" resultType="com.javaex.vo.BoardVo">
 		<![CDATA[
 			select  b.no,
 			        b.title,
 			        u.name,
 			        b.hit,
-			        to_char(b.reg_date, 'YY/MM/DD HH:MI') reg_date,
-			        u.no user_no
+			        to_char(b.reg_date, 'YY/MM/DD HH:MI') as "reg_date",
+			        b.user_no as "user_no"
 			from board b, users u
-			where b.uesr_no = u.no
+			where b.user_no = u.no
 			order by b.no desc
 		]]>
 	</select>
@@ -56,7 +56,7 @@
 			select b.no
 				   u.name,
 				   b.hit,
-				   to_char(b.reg_date,'yyyy-mm-dd') reg_date,
+				   to_char(b.reg_date,'yyyy-mm-dd') as "reg_date",
 				   b.title,
 				   b.content,
 				   u.no

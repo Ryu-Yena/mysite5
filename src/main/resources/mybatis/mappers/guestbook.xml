@@ -10,7 +10,7 @@
 			        name,
 			        password,
 			        content,
-			        to_char(reg_date, 'YY/MM/DD HH:MI')
+			        to_char(reg_date, 'YY/MM/DD HH:MI') as "reg_date"
 			from guestbook
 			order by no desc
 		]]>

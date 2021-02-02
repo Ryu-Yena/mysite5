@@ -11,6 +11,10 @@ public class BoardVo {
 	private int user_no;
 	
 	
+	public BoardVo() {
+		
+	}
+	
 
 
 	public BoardVo(int no, String title, String name, int hit, String reg_date, int user_no) {

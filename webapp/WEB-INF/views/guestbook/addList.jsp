@@ -72,7 +72,7 @@
 				</form>	
 				
 				<!-- //guestRead -->
-				<c:forEach items="${guestList}" var="vo">
+				<c:forEach items="${guestList}" var="gusetVo">
 					<table class="guestRead">
 						<colgroup>
 								<col style="width: 10%;">
@@ -81,13 +81,13 @@
 								<col style="width: 10%;">
 						</colgroup>
 						<tr>
-							<td>${vo.no}</td>
-							<td>${vo.name}</td>
-							<td>${vo.Reg_date}</td>
-							<td><a href="${pageContext.request.contextPath}/guestbook/deleteForm&no=${vo.no}">[삭제]</a></td>
+							<td>${gusetVo.no}</td>
+							<td>${gusetVo.name}</td>
+							<td>${gusetVo.reg_date}</td>
+							<td><a href="${pageContext.request.contextPath}/guestbook/deleteForm&no=${gusetVo.no}">[삭제]</a></td>
 						</tr>
 						<tr>
-							<td colspan=4 class="text-left">${vo.contnet}</td>
+							<td colspan=4 class="text-left">${gusetVo.content}</td>
 						</tr>
 					</table>
 				</c:forEach>	

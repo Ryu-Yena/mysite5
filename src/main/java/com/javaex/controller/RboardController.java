@@ -28,9 +28,11 @@ public class RboardController {
 	@RequestMapping(value="/list", method = {RequestMethod.GET, RequestMethod.POST})
 	public String list(Model model) {
 		System.out.println("/rboard/list");
-		List<RboardVo> rboardList = rboadService.rboardList();
+		List<RboardVo> rboardList = rboardService.rboardList();
 		
+		model.addAttribute("rboardList", rboardList);
 		
+		return "/rboard/list";
 	}
 
 }

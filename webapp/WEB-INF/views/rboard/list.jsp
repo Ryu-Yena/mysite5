@@ -12,7 +12,7 @@
 
 </head>
 
-
+<!-- rboard list -->
 <body>
 	<div id="wrap">
 
@@ -22,8 +22,8 @@
 		<div id="aside">
 			<h2>게시판</h2>
 			<ul>
-				<li><a href="">일반게시판</a></li>
-				<li><a href="">댓글게시판</a></li>
+				<li><a href="${pageContext.request.contextPath}/board/list">일반게시판</a></li>
+				<li><a href="${pageContext.request.contextPath}/rboard/list">댓글게시판</a></li>
 			</ul>
 		</div>
 		<!-- //aside -->
@@ -67,13 +67,13 @@
 						<tbody>
 							<tr>
 								<td>${vo.no}</td>
-								<td class="text-left"><a href="${pageContext.request.contextPath}/board/read&no=${vo.no}">${vo.title}</a></td>
+								<td class="text-left"><a href="${pageContext.request.contextPath}/rboard/read&no=${vo.no}">${vo.title}</a></td>
 								<td>${vo.name}</td>
 								<td>${vo.hit}</td>
 								<td>${vo.reg_date}</td>
 								<c:choose>
 									<c:when test="${sessionScope.authUser.no eq vo.user_no}">
-										<td><a href="${pageContext.request.contextPath}/board/delete&no=${vo.no}">[삭제]</a></td>
+										<td><a href="${pageContext.request.contextPath}/rboard/delete&no=${vo.no}">[삭제]</a></td>
 									</c:when>
 									<c:otherwise>
 										<td> </td>
@@ -104,8 +104,8 @@
 						<div class="clear"></div>
 					</div>
 					
-						<c:if test="${empty authUser}">
-							<a id="btn_write" href="/mysite2/rboard/writeForm">글쓰기</a>
+						<c:if test="${authUser != null}">
+							<a id="btn_write" href="${pageContext.request.contextPath}/rboard/writeForm">글쓰기</a>
 						</c:if>	
 				</div>
 				<!-- //list -->

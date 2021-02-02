@@ -28,7 +28,9 @@ public class BoardDao {
 	public List<BoardVo> getBoardList(){
 		System.out.println("BoardDao getBoardList()");
 		
-		return sqlSession.selectList("board.selectList");
+		List<BoardVo> boardList = sqlSession.selectList("board.selectList");
+		
+		return boardList;
 	}
 	
 	//게시글 삭제

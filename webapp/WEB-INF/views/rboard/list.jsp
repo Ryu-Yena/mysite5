@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/rboard.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -105,7 +105,7 @@
 					</div>
 					
 						<c:if test="${empty authUser}">
-							<a id="btn_write" href="/mysite2/board/writeForm">글쓰기</a>
+							<a id="btn_write" href="/mysite2/rboard/writeForm">글쓰기</a>
 						</c:if>	
 				</div>
 				<!-- //list -->

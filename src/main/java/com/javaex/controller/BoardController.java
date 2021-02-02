@@ -51,8 +51,7 @@ public class BoardController {
 	public String list(Model model) {
 		System.out.println("/board/list");
 		List<BoardVo> boardList = boardService.boardList();
-		// System.out.println(boardList.toString()); //잘가져오나
-		// boardList를 model에 담아줌.
+
 		model.addAttribute("boardList", boardList);
 
 		return "/board/list";

@@ -24,3 +24,4 @@ create sequence seq_rno
 INCREMENT by 1
 start with 1;
 
+commit;

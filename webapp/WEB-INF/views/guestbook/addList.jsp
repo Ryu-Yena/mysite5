@@ -14,9 +14,9 @@
 <body>
 	<div id="wrap">
 
-		<!-- header +navi 옮김 -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
-
+		<!-- //header -->
+		<!-- //nav -->
 
 		<div id="aside">
 			<h2>방명록</h2>
@@ -28,22 +28,22 @@
 		<!-- //aside -->
 
 		<div id="content">
-			
+
 			<div id="content-head">
-            	<h3>일반방명록</h3>
-            	<div id="location">
-            		<ul>
-            			<li>홈</li>
-            			<li>방명록</li>
-            			<li class="last">일반방명록</li>
-            		</ul>
-            	</div>
-                <div class="clear"></div>
-            </div>
-            <!-- //content-head -->
+				<h3>일반방명록</h3>
+				<div id="location">
+					<ul>
+						<li>홈</li>
+						<li>방명록</li>
+						<li class="last">일반방명록</li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<!-- //content-head -->
 
 			<div id="guestbook">
-				<form action="${pageContext.request.contextPath}/guestbook/add" method="get">
+				<form action="${pageContext.request.contextPath}/guestbook/add" method="post">
 					<table id="guestAdd">
 						<colgroup>
 							<col style="width: 70px;">
@@ -55,8 +55,9 @@
 							<tr>
 								<th><label class="form-text" for="input-uname">이름</label></td>
 								<td><input id="input-uname" type="text" name="name"></td>
-								<th><label class="form-text" for="input-pass">패스워드</label></td>
-								<td><input id="input-pass"type="password" name="password"></td>
+								<th><label class="form-text" for="input-pass">패스워드</label>
+								</td>
+								<td><input id="input-pass" type="password" name="password"></td>
 							</tr>
 							<tr>
 								<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
@@ -71,35 +72,37 @@
 					
 				</form>	
 				
-				<!-- //guestRead -->
-				<c:forEach items="${guestList}" var="gusetVo">
+				<c:forEach items="${guestbookList}" var="guestbookVo">
 					<table class="guestRead">
 						<colgroup>
-								<col style="width: 10%;">
-								<col style="width: 40%;">
-								<col style="width: 40%;">
-								<col style="width: 10%;">
+							<col style="width: 10%;">
+							<col style="width: 40%;">
+							<col style="width: 40%;">
+							<col style="width: 10%;">
 						</colgroup>
 						<tr>
-							<td>${gusetVo.no}</td>
-							<td>${gusetVo.name}</td>
-							<td>${gusetVo.reg_date}</td>
-							<td><a href="${pageContext.request.contextPath}/guestbook/deleteForm&no=${gusetVo.no}">[삭제]</a></td>
+							<td>${guestbookVo.no}</td>
+							<td>${guestbookVo.name}</td>
+							<td>${guestbookVo.regDate}</td>
+							<td><a href="${pageContext.request.contextPath}/guestbook/removeForm?no=${guestbookVo.no}">[삭제]</a></td>
 						</tr>
 						<tr>
-							<td colspan=4 class="text-left">${gusetVo.content}</td>
+							<td colspan=4 class="text-left">${guestbookVo.content}</td>
 						</tr>
 					</table>
-				</c:forEach>	
-
+					<!-- //guestRead -->
+				</c:forEach>
+				
+				
 			</div>
 			<!-- //guestbook -->
 		</div>
 		<!-- //content  -->
 		<div class="clear"></div>
 		
-		<!-- footer -->
 		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+		<!-- //footer -->
+
 	</div>
 	<!-- //wrap -->
 

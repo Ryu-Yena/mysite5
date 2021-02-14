@@ -14,9 +14,9 @@
 <body>
 	<div id="wrap">
 
-		<!-- header +navi 옮김 -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
-
+		<!-- //header -->
+		<!-- //nav -->
 
 		<div id="aside">
 			<h2>방명록</h2>
@@ -28,22 +28,27 @@
 		<!-- //aside -->
 
 		<div id="content">
-			
+
 			<div id="content-head">
-            	<h3>일반방명록</h3>
-            	<div id="location">
-            		<ul>
-            			<li>홈</li>
-            			<li>방명록</li>
-            			<li class="last">일반방명록</li>
-            		</ul>
-            	</div>
-                <div class="clear"></div>
-            </div>
-            <!-- //content-head -->
+				<h3>일반방명록</h3>
+				<div id="location">
+					<ul>
+						<li>홈</li>
+						<li>방명록</li>
+						<li class="last">일반방명록</li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<!-- //content-head -->
 
 			<div id="guestbook">
-				<form action="${pageContext.request.contextPath}/guestbook/delete" method="get">
+				<form action="${pageContext.request.contextPath}/guestbook/remove"
+					method="get">
+					<c:if test="${param.result == 'fail' }">
+						<p>비밀번호가 틀렸습니다. 다시 입력해 주세요</p>
+					</c:if>
+
 					<table id="guestDelete">
 						<colgroup>
 							<col style="width: 10%;">
@@ -53,21 +58,22 @@
 						</colgroup>
 						<tr>
 							<td>비밀번호</td>
-							<td><input type="password" name="pass"></td>
+							<td><input type="password" name="password"></td>
 							<td class="text-left"><button type="submit">삭제</button></td>
-							<td><a href="${pageContext.request.contextPath}/guestbook/addlist">[메인으로 돌아가기]</a></td>
+							<td><a href="/guestbook2/gbc">[메인으로 돌아가기]</a></td>
 						</tr>
 					</table>
+					<input type='text' name="no" value="${param.no}">
 				</form>
-				
+
 			</div>
 			<!-- //guestbook -->
 		</div>
 		<!-- //content  -->
 		<div class="clear"></div>
-		
-		<!-- footer -->
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+		<!-- //footer -->
 
 	</div>
 	<!-- //wrap -->

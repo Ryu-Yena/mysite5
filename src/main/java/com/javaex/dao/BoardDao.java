@@ -28,9 +28,15 @@ public class BoardDao {
 	public List<BoardVo> getBoardList(){
 		System.out.println("BoardDao getBoardList()");
 		
-		List<BoardVo> boardList = sqlSession.selectList("board.selectList");
+		return sqlSession.selectList("board.selectList");
+	}
+	
+	//글전체 가져오기(키워드)
+	public List<BoardVo> selectList2(String keyword){
+		System.out.println("[BoardDao.selectList2()]");
+		System.out.println("keyword=" + keyword);
 		
-		return boardList;
+		return sqlSession.selectList("board.selectList2", keyword);
 	}
 	
 	//게시글 삭제

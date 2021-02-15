@@ -49,12 +49,22 @@ public class BoardController {
 	//게시판 리스트 폼
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Model model) {
-		System.out.println("/board/list");
+		System.out.println("[BoardController.list()]");
+		
 		List<BoardVo> boardList = boardService.boardList();
-
 		model.addAttribute("boardList", boardList);
-
 		return "/board/list";
+	}
+	
+	//리스트(리스트 + 검색기능) 
+	@RequestMapping(value= "/list2", method = { RequestMethod.GET, RequestMethod.POST })
+	public String list2(@RequestParam(value= "keyword", required = false, defaultValue = "") String keyword, Model model) { //키워드가 있을 수도 있고 없을 수도 있다.
+		System.out.println("[BoardController.list2()]");
+		
+		List<BoardVo> boardList = boardService.getBoardList2(keyword);
+		model.addAttribute("boardList", boardList);
+		
+		return "board/list2";
 	}
 	
 	//게시글 삭제
@@ -113,5 +123,5 @@ public class BoardController {
 
 		return "redirect:/board/list";
 	}
-
+	
 }

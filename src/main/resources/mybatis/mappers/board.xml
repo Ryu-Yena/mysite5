@@ -23,15 +23,38 @@
 		<![CDATA[
 			select  b.no,
 			        b.title,
-			        u.name,
+			        u.name as name,
 			        b.hit,
-			        to_char(b.reg_date, 'YY/MM/DD HH:MI') as "reg_date",
+			        to_char(b.reg_date, 'YY/MM/DD HH:MI:SS') as "reg_date",
 			        b.user_no as "user_no"
 			from board b, users u
 			where b.user_no = u.no
 			order by b.no desc
 		]]>
 	</select>
+	
+	<!--  글전체 가져오기(검색어)  -->
+	<select id="selectList2" parameterType="string" resultType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			select  b.no,
+			        b.title,
+			        u.name as name,
+			        b.hit,
+			        to_char(b.reg_date, 'YY/MM/DD HH:MI:SS') as "reg_date",
+			        b.user_no as "user_no"
+			from board b, users u
+			where b.user_no = u.no
+		]]>
+			<if test="    value != null and value != ''   ">
+				and title like '%'|| #{keyword} ||'%'
+			</if>
+		<![CDATA[
+			order by b.no desc
+		]]>
+	</select>
+	
+	
+	
 	
 	<!-- 조회수 증가 -->
 	<update id="hitB" parameterType="int">

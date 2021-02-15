@@ -24,9 +24,19 @@ public class BoardService {
 	
 	//게시판 리스트
 	public List<BoardVo> boardList(){
-		System.out.println("BaordService boardList()");
+		System.out.println("[BaordService boardList()]");
 		List<BoardVo> boardList = boardDao.getBoardList();
 		
+		return boardList;
+	}
+	
+	//리스트(리스트 + 검색)
+	public List<BoardVo> getBoardList2(String keyword){
+		System.out.println("[BaordService getBoardList2()]");
+
+		
+		List<BoardVo> boardList = boardDao.selectList2(keyword);
+				
 		return boardList;
 	}
 	
